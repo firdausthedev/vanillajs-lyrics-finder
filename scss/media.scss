@@ -1,0 +1,191 @@
+@media (max-width: 760px) {
+  #header {
+    border-radius: 0 0 20% 20%;
+    h1 {
+      margin-top: -10px;
+      font-size: 1.5rem;
+    }
+  }
+  #header-input {
+    input {
+      width: 30rem;
+      font-size: 1rem;
+    }
+  }
+
+  #songs-details {
+    margin-top: 0.5rem;
+  }
+
+  .song {
+    width: 30rem;
+    padding: 1rem 0;
+
+    .song-info {
+      img {
+        margin-right: 1rem;
+        width: 3rem;
+        height: 3rem;
+      }
+
+      p:first-of-type {
+        font-size: 1.2rem;
+      }
+
+      p:last-of-type {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+  }
+
+  #modal-title {
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  #modal-form {
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  #header {
+    h1 {
+      margin-top: -10px;
+      font-size: 1.2rem;
+    }
+  }
+  #header-input {
+    input {
+      width: 20rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  #songs-details {
+    margin-top: 0.5rem;
+  }
+
+  .song {
+    width: 20rem;
+    padding: 1rem 0;
+
+    .song-info {
+      img {
+        margin-right: 0.8rem;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      p:first-of-type {
+        font-size: 1rem;
+      }
+
+      p:last-of-type {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+  }
+
+  #modal-title {
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  #modal-form {
+    h2 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+@media (max-width: 355px) {
+  #header {
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+  #header-input {
+    input {
+      width: 15rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .song {
+    width: 15rem;
+    padding: 1rem 0;
+
+    .song-info {
+      img {
+        margin-right: 0.8rem;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      p:first-of-type {
+        font-size: 1rem;
+      }
+
+      p:last-of-type {
+        font-size: 0.8rem;
+      }
+    }
+    button {
+      padding: 5px 13px;
+      font-size: 0.6rem;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+  }
+
+  #modal-title {
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  #modal-form {
+    h2 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.6rem;
+    }
+  }
+}

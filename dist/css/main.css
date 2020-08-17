@@ -28,7 +28,7 @@ body {
 #header-input {
   display: flex; }
   #header-input input {
-    width: 40rem;
+    width: 46rem;
     border-radius: 10px;
     border: none;
     font-family: 'Inter', sans-serif;
@@ -36,17 +36,18 @@ body {
     outline: none;
     background-color: white;
     padding: 20px; }
-  #header-input button {
-    padding: 20px;
-    border: none;
-    border-left: 1.5px solid #00b4d8;
-    color: #00b4d8;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    background-color: white;
-    margin-left: -1rem;
-    border-radius: 0 10px 10px 0;
-    outline: none; }
+  #header-input a {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #header-input a svg {
+      fill: #00b4d8;
+      margin-left: -4rem;
+      height: 2rem; }
+    #header-input a:hover {
+      transition: 1s;
+      transform: scale(1.2);
+      cursor: pointer; }
 
 #songs-details {
   display: flex;
@@ -69,6 +70,8 @@ body {
       width: 4rem;
       height: 4rem;
       border-radius: 50%; }
+      .song .song-info img:hover {
+        animation: rotating 3s linear infinite; }
     .song .song-info p:first-of-type {
       font-size: 1.5rem; }
   .song button {
@@ -78,13 +81,18 @@ body {
     align-self: center;
     padding: 10px 20px;
     border-radius: 5px;
-    color: white; }
+    color: white;
+    cursor: pointer; }
+    .song button:hover {
+      transition: 0.5s;
+      transform: scale(1.2); }
 
 #modal {
   display: none;
   position: fixed;
   z-index: 1;
   padding-top: 100px;
+  padding-bottom: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -95,10 +103,10 @@ body {
 
 .modal-content {
   background-color: #fefefe;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: auto;
   padding: 20px;
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-direction: column; }
 
@@ -107,13 +115,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  position: relative; }
+  #modal-title img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem;
+    height: 4rem; }
+  #modal-title span {
+    position: absolute;
+    top: 0;
+    right: 0; }
 
 #modal-form {
   display: flex;
   flex-direction: column; }
   #modal-form h2 {
     font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem; }
+  #modal-form p {
     text-align: center;
     margin-bottom: 1rem; }
 
@@ -131,3 +153,9 @@ body {
     transition: 1s;
     text-decoration: none;
     cursor: pointer; }
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }

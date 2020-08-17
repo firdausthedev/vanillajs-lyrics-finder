@@ -7,6 +7,7 @@ const modal = document.getElementById('modal')
 const closeModal = document.getElementById('modal-close')
 const songTitleModal = document.querySelector('#modal-form h2')
 const songLyricModal = document.querySelector('#modal-form p')
+const albumCoverModal = document.querySelector('#modal-title img')
 
 const APIURL = 'https://api.lyrics.ovh'
 let list = []
@@ -62,6 +63,10 @@ const getSongLyrics = (data) => {
 
 searchInput.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
+    list = []
+    document.querySelectorAll('.song').forEach((song, index) => {
+      song.remove()
+    })
     getSongData(searchInput.value)
   }
 })
@@ -78,8 +83,9 @@ const displayLyrics = (id) => {
   list.forEach((li) => {
     if (li.index == id) {
       modal.style.display = 'block'
-      songTitleModal.innerHTML = li.song.title
+      songTitleModal.innerHTML = li.song.title.length > 30 ? `${li.song.title.substr(0, 30)}...` : li.song.title
       songLyricModal.innerHTML = li.lyrics.lyrics.replace(/(\r\n|\r|\n)/g, '<br>')
+      albumCoverModal.src = li.song.album.cover_medium
     }
   })
 }
