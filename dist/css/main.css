@@ -29,7 +29,7 @@ body {
   display: flex; }
   #header-input input {
     width: 46rem;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     border: none;
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
@@ -39,15 +39,18 @@ body {
   #header-input a {
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+    border-left: 2px solid #00b4d8; }
     #header-input a svg {
       fill: #00b4d8;
-      margin-left: -4rem;
       height: 2rem; }
-    #header-input a:hover {
-      transition: 1s;
-      transform: scale(1.2);
-      cursor: pointer; }
+      #header-input a svg:hover {
+        transition: 1s;
+        transform: scale(1.2);
+        cursor: pointer; }
 
 #songs-details {
   display: flex;

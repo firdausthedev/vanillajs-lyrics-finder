@@ -35,7 +35,7 @@ body {
 
   input {
     width: 46rem;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     border: none;
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
@@ -48,16 +48,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+    border-left: 2px solid #00b4d8;
     svg {
       fill: #00b4d8;
-      margin-left: -4rem;
       height: 2rem;
-    }
 
-    &:hover {
-      transition: 1s;
-      transform: scale(1.2);
-      cursor: pointer;
+      &:hover {
+        transition: 1s;
+        transform: scale(1.2);
+        cursor: pointer;
+      }
     }
   }
 }

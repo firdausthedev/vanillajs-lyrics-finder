@@ -13,15 +13,6 @@ const APIURL = 'https://api.lyrics.ovh'
 let list = []
 let currentSongID
 
-searchBtn.addEventListener('click', (e) => {
-  list = []
-  document.querySelectorAll('.song').forEach((song, index) => {
-    song.remove()
-  })
-
-  getSongData(searchInput.value)
-})
-
 const getSongData = async (name) => {
   const res = await fetch(`${APIURL}/suggest/${name}`)
   const data = await res.json()
@@ -39,7 +30,6 @@ const getSongData = async (name) => {
 
 const getSongLyrics = (data) => {
   list.push(data)
-  const lyrics = data.lyrics.lyrics.replace(/(\r\n|\r|\n)/g, '<br>')
   const title = data.song.title
   const albumCover = data.song.album.cover_medium
   const artist = data.song.artist.name
@@ -63,13 +53,45 @@ const getSongLyrics = (data) => {
 
 searchInput.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
-    list = []
-    document.querySelectorAll('.song').forEach((song, index) => {
-      song.remove()
-    })
-    getSongData(searchInput.value)
+    getData()
   }
 })
+
+searchBtn.addEventListener('click', async (e) => {
+  getData()
+})
+
+const getData = () => {
+  list = []
+  document.querySelectorAll('.song').forEach((song, index) => {
+    song.remove()
+  })
+
+  if (isYoutubeLink(searchInput.value)) {
+    getSongTitleFromYT(searchInput.value)
+  } else {
+    getSongData(searchInput.value)
+  }
+}
+
+const getSongTitleFromYT = async (url) => {
+  const res = await fetch('https://noembed.com/embed?url=' + url)
+  const data = await res.json()
+  getSongData(data.title)
+}
+
+const isYoutubeLink = (input) => {
+  var pattern = new RegExp(
+    '^(https?:\\/\\/)?' +
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+      '((\\d{1,3}\\.){3}\\d{1,3}))' +
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+      '(\\?[;&a-z\\d%_.~+=-]*)?' +
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  )
+  return pattern.test(input)
+}
 
 document.getElementById('songs-details').addEventListener('click', (e) => {
   if (e.target.classList.contains('get-lyric')) {
@@ -85,7 +107,7 @@ const displayLyrics = (id) => {
       modal.style.display = 'block'
       songTitleModal.innerHTML = li.song.title.length > 30 ? `${li.song.title.substr(0, 30)}...` : li.song.title
       songLyricModal.innerHTML = li.lyrics.lyrics.replace(/(\r\n|\r|\n)/g, '<br>')
-      albumCoverModal.src = li.song.album.cover_medium
+      // albumCoverModal.src = li.song.album.cover_medium
     }
   })
 }
