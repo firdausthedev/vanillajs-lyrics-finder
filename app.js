@@ -37,8 +37,8 @@ const getSongData = async (name) => {
   })
 }
 
-const displayNoMatch = (name) => {
-  document.querySelector('.error-msg p').innerHTML = `Could not find any lyrics with ${name}`
+const displayNoMatch = (msg) => {
+  document.querySelector('.error-msg p').innerHTML = `Could not find any lyrics with ${msg}`
 }
 
 const getSongLyrics = (data) => {
@@ -91,7 +91,11 @@ const getData = () => {
 const getSongTitleFromYT = async (url) => {
   const res = await fetch('https://noembed.com/embed?url=' + url)
   const data = await res.json()
-  getSongData(data.title)
+  if (data.title === undefined) {
+    displayNoMatch(url)
+  } else {
+    getSongData(data.title)
+  }
 }
 
 const isYoutubeLink = (input) => {
