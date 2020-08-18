@@ -17,6 +17,10 @@ const getSongData = async (name) => {
   const res = await fetch(`${APIURL}/suggest/${name}`)
   const data = await res.json()
 
+  if (data.data.length === 0) {
+    displayNoMatch(name)
+  }
+
   data.data.forEach(async (d, i) => {
     const artist = d.artist.name
     const title = d.title
@@ -25,7 +29,16 @@ const getSongData = async (name) => {
     if (dataLyrics.lyrics) {
       getSongLyrics({ lyrics: dataLyrics, song: d, index: i })
     }
+    if (data.data[i + 1] === undefined) {
+      if (list.length === 0) {
+        displayNoMatch(name)
+      }
+    }
   })
+}
+
+const displayNoMatch = (name) => {
+  document.querySelector('.error-msg p').innerHTML = `Could not find any lyrics with ${name}`
 }
 
 const getSongLyrics = (data) => {
@@ -62,6 +75,7 @@ searchBtn.addEventListener('click', async (e) => {
 })
 
 const getData = () => {
+  document.querySelector('.error-msg p').innerHTML = ''
   list = []
   document.querySelectorAll('.song').forEach((song, index) => {
     song.remove()

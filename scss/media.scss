@@ -3,7 +3,7 @@
     border-radius: 0 0 20% 20%;
     h1 {
       margin-top: -10px;
-      font-size: 1.5rem;
+      font-size: 1.9rem;
     }
   }
   #header-input {
@@ -18,7 +18,7 @@
   }
 
   .song {
-    width: 30rem;
+    width: 34rem;
     padding: 1rem 0;
 
     .song-info {
@@ -67,13 +67,20 @@
   #header {
     h1 {
       margin-top: -10px;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
     }
   }
   #header-input {
     input {
       width: 20rem;
+      height: 3rem;
       font-size: 0.8rem;
+    }
+    a {
+      height: 3rem;
+      svg {
+        height: 1.4rem;
+      }
     }
   }
 
@@ -82,7 +89,7 @@
   }
 
   .song {
-    width: 20rem;
+    width: 24rem;
     padding: 1rem 0;
 
     .song-info {
@@ -129,7 +136,7 @@
 @media (max-width: 430px) {
   #header {
     h1 {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
     }
   }
   #header-input {
@@ -140,14 +147,11 @@
     }
     a {
       height: 2rem;
-      svg {
-        height: 1.4rem;
-      }
     }
   }
 
   .song {
-    width: 15rem;
+    width: 19rem;
     padding: 1rem 0;
 
     .song-info {
