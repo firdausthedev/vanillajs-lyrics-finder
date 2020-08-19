@@ -11,30 +11,55 @@ const albumCoverModal = document.querySelector('#modal-title img')
 
 const APIURL = 'https://api.lyrics.ovh'
 let list = []
-let currentSongID
 
 const getSongData = async (name) => {
-  const res = await fetch(`${APIURL}/suggest/${name}`)
-  const data = await res.json()
-
-  if (data.data.length === 0) {
-    displayNoMatch(name)
-  }
-
-  data.data.forEach(async (d, i) => {
-    const artist = d.artist.name
-    const title = d.title
-    const withLyrics = await fetch(`${APIURL}/v1/${artist}/${title}`)
-    const dataLyrics = await withLyrics.json()
-    if (dataLyrics.lyrics) {
-      getSongLyrics({ lyrics: dataLyrics, song: d, index: i })
+  try {
+    const res = await fetch(`${APIURL}/suggest/${name}`)
+    const data = await res.json()
+    if (data.data.length === 0) {
+      refineYTSong(name)
     }
-    if (data.data[i + 1] === undefined) {
-      if (list.length === 0) {
-        displayNoMatch(name)
+
+    data.data.forEach(async (d, i) => {
+      const artist = d.artist.name
+      const title = d.title
+      const withLyrics = await fetch(`${APIURL}/v1/${artist}/${title}`)
+      const dataLyrics = await withLyrics.json()
+      if (dataLyrics.lyrics) {
+        getSongLyrics({ lyrics: dataLyrics, song: d, index: i })
       }
+      if (data.data[i + 1] === undefined) {
+        if (list.length === 0) {
+          displayNoMatch(name)
+        }
+      }
+    })
+  } catch (error) {
+    refineYTSong(name)
+  }
+}
+
+const refineYTSong = async (title) => {
+  const newTitle = title.toLowerCase()
+  var newStr = newTitle
+    .replace(/official/g, '')
+    .replace(/video/g, '')
+    .replace(/[()]/g, '')
+    .replace(/by/g, '')
+    .replace(/lyrics/g, '')
+    .replace(/lyric/g, '')
+
+  try {
+    const res = await fetch(`${APIURL}/suggest/${newStr}`)
+    const data = await res.json()
+    if (data.data.length > 0) {
+      getSongData(newStr)
+    } else {
+      displayNoMatch(title)
     }
-  })
+  } catch (error) {
+    displayNoMatch(title)
+  }
 }
 
 const displayNoMatch = (msg) => {
